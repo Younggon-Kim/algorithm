@@ -1,5 +1,5 @@
 //https://www.acmicpc.net/problem/17090
-#include <bits/stdc++.h>
+#include <iostream>
 #include <cstring>
 
 using namespace std;

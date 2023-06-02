@@ -1,5 +1,6 @@
 //https://www.acmicpc.net/problem/12850
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
