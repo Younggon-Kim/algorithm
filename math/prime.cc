@@ -32,7 +32,7 @@ void init() {
 }
 
 int main() {
-    init_primes();
+    init();
 
     //print primes
     for(auto prime: primes) {
