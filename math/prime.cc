@@ -1,13 +1,13 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cmath>
 
 using namespace std;
 
-const long long MAX_N = 100000;
-
+#define MAX_N 1000000LL
 bool is_prime[MAX_N + 1];
 
 vector<int> primes;
-vector<long long> dp(MAX_N + 1, 0);
 
 void init() {
     //init is_prime
@@ -15,9 +15,9 @@ void init() {
     for(int i = 2; i <= MAX_N; i++) {
         is_prime[i] = true;
     }
-    for (int i = 2; i * i <= MAX_N; i++) {
+    for (int i = 2; i <= sqrt(MAX_N); i++) {
         if (is_prime[i]) {
-            for (int j = i*i; j <= MAX_N; j += i) {
+            for (int j = i * i; j <= MAX_N; j += i) {
                 is_prime[j] = false;
             }
         }
