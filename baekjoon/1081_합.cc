@@ -12,7 +12,7 @@ long long tens[11] = {1}; //자리수 10^0 ~ 10^10 까지 캐싱. 문제에서 �
  * place : 자리수. e.g. 2 는 10^2 를 의미
  * digit : 카운팅 하려는 숫자 1개. e.g. 300 에서 3
 */
-long long get_number_count(long long n, int place, int digit) {
+long long get_digit_count(long long n, int place, int digit) {
     long long count = 0;
 
     //1) 현재 자리수 보다 높은 자리수(place + 1) 카운팅
@@ -39,7 +39,7 @@ long long get_digit_sum(long long n) {
     for(int place = 0; place < MAX_PLACE; place++) {
         //각 자리에서 숫자 1 ~ 9 를 각각 카운팅. 0은 어차피 더해도 0이므로 카운팅하지 않음
         for(int digit = 1; digit <= 9; digit++) { 
-            sum += get_number_count(n, place, digit) * digit;
+            sum += get_digit_count(n, place, digit) * digit;
         }
     }
 
@@ -50,6 +50,7 @@ void solve() {
     long long a, b; //a <= b
     scanf("%lld %lld", &a, &b);
 
+    //10^0 ~ 10^10 초기화
     for(int i = 1; i <= MAX_PLACE; i++) {
         tens[i] = tens[i - 1] * 10;
     }
