@@ -2,11 +2,23 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
+#include <string>
 
 using namespace std;
 
 std::chrono::high_resolution_clock::time_point st;
 std::chrono::high_resolution_clock::time_point et;
+
+
+void measure_start() {
+    st = std::chrono::high_resolution_clock::now();
+}
+
+void measure_end(string message) {
+     et = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(et - st);
+    std::cout << message << " : " << time_span.count() << " seconds." << std::endl;;
+}
 
 template<typename T>
 void print_data(vector<T> &data, int r) {
@@ -53,39 +65,26 @@ int main() {
 
 
     cout << "----- permutation swap -----" << endl;
-    st = std::chrono::high_resolution_clock::now();
-
+    measure_start();
     permutation_swap(data, data.size(), data.size(), 0);
-
-    et = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(et - st);
-    std::cout << "permutation swap execution time : " << time_span.count() << " seconds." << std::endl;;
-
+    measure_end("permutation swap");
 
 
     cout << "----- permutation visit -----" << endl;
-    st = std::chrono::high_resolution_clock::now();
-
+    measure_start();
     vector<bool> visit(data.size(), false);
     vector<char> out;
     permutation_visit(data, data.size(), data.size(), out, visit);
-
-    et = std::chrono::high_resolution_clock::now();
-    time_span = std::chrono::duration_cast<std::chrono::duration<double>>(et - st);
-    std::cout << "permutation visit execution time : " << time_span.count() << " seconds." << std::endl;;
+    measure_end("permutation visit");
 
 
 
     cout << "----- permutation (STL) -----" << endl;
-    st = std::chrono::high_resolution_clock::now();
-
+    measure_start();
     do {
         // print_data<char>(data, data.size()); //debugging
     } while(next_permutation(data.begin(), data.end()));
-
-    et = std::chrono::high_resolution_clock::now();
-    time_span = std::chrono::duration_cast<std::chrono::duration<double>>(et - st);
-    std::cout << "permutation STL execution time : " << time_span.count() << " seconds." << std::endl;;
+    measure_end("permutation STL");
 }
 
 // ----- permutation swap -----
