@@ -6,18 +6,18 @@
 
 using namespace std;
 
-std::chrono::high_resolution_clock::time_point st;
-std::chrono::high_resolution_clock::time_point et;
+chrono::high_resolution_clock::time_point st;
+chrono::high_resolution_clock::time_point et;
 
-
-void measure_start() {
-    st = std::chrono::high_resolution_clock::now();
+void measure_start(string message) {
+    cout << message << " is measuring..." << endl;
+    st = chrono::high_resolution_clock::now();
 }
 
 void measure_end(string message) {
-     et = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(et - st);
-    std::cout << message << " : " << time_span.count() << " seconds." << std::endl;;
+     et = chrono::high_resolution_clock::now();
+    chrono::duration<double> time_span = chrono::duration_cast<chrono::duration<double>>(et - st);
+    cout << message << " : " << time_span.count() << " seconds" << endl;;
 }
 
 template<typename T>
@@ -63,33 +63,26 @@ void permutation_visit(vector<T> &data, int n, int r, vector<T> &out, vector<boo
 int main() {
     vector<char> data = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}; //10개
 
-
-    cout << "----- permutation swap -----" << endl;
-    measure_start();
+    measure_start("permutation swap");
     permutation_swap(data, data.size(), data.size(), 0);
     measure_end("permutation swap");
 
-
-    cout << "----- permutation visit -----" << endl;
-    measure_start();
+    measure_start("permutation visit");
     vector<bool> visit(data.size(), false);
     vector<char> out;
     permutation_visit(data, data.size(), data.size(), out, visit);
     measure_end("permutation visit");
 
-
-
-    cout << "----- permutation (STL) -----" << endl;
-    measure_start();
+    measure_start("permutation STL");
     do {
         // print_data<char>(data, data.size()); //debugging
     } while(next_permutation(data.begin(), data.end()));
     measure_end("permutation STL");
 }
 
-// ----- permutation swap -----
-// permutation swap execution time : 0.15964 seconds.
-// ----- permutation visit -----
-// permutation visit execution time : 1.96749 seconds.
-// ----- permutation (STL) -----
-// permutation STL execution time : 0.212547 seconds.
+// permutation swap is measuring...
+// permutation swap : 0.28354 seconds
+// permutation visit is measuring...
+// permutation visit : 1.94415 seconds
+// permutation STL is measuring...
+// permutation STL : 0.382837 seconds
