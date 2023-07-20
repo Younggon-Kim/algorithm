@@ -109,7 +109,8 @@ test_cpp()
         diff_file="./${output_path}/${tc_name}.diff"
 
         # execute
-        time env in="${tc_input_file}" out="${output_file}" ./${exec_file}
+        # time env in="${tc_input_file}" out="${output_file}" ./${exec_file}
+        time cat ${tc_input_file} | ./${exec_file} > ${output_file}
 
         # check output and tc output
         diff=`diff "${output_file}" "${tc_output_file}"`
