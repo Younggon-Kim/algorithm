@@ -12,12 +12,8 @@ C++ 파일을 빌드하고 테스트 입력 파일들을 자동으로 실행하�
 - 실행 결과 파일은 ./output-<datetime>/*.out 으로 생성되지만, diff 가 없으면 삭제한다.
 - 모든 tc 를 통과하면 ./output-<datetime> 경로에 어떤 파일도 생성되지 않는다.
 
-# Prerequisite
-input, output 파일을 처리하기 위해서 코드 상에 freopen 함수를 코드에 추가해야 함
-
 ```c++
 #include <iostream>
-#include <cstdio>
  
 using namespace std;
  
@@ -26,10 +22,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
- 
-    freopen(getenv("out"), "w", stdout);
-    freopen(getenv("in"), "r", stdin);
- 
+
     int tc;
     cin >> tc;  // read from "in"
     cout << tc << endl; //write to "out"
